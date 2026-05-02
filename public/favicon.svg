@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg { fill: #0f0e0c; }
+    .fg { fill: #f5f0e8; }
+    .accent { fill: #c2410c; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #f5f0e8; }
+      .fg { fill: #0f0e0c; }
+      .accent { fill: #fb923c; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14" ry="14"/>
+  <rect class="accent" x="6" y="48" width="20" height="3" rx="1.5"/>
+  <text class="fg"
+        x="32" y="42"
+        text-anchor="middle"
+        font-family="Georgia, 'Source Serif Pro', 'Source Serif 4', serif"
+        font-size="34"
+        font-weight="700"
+        letter-spacing="-1">PK</text>
+</svg>

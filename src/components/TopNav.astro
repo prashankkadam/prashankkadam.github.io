@@ -15,23 +15,22 @@ const links = [
     <a href="#top" class="font-serif text-base font-semibold tracking-tight">
       Prashank Kadam
     </a>
-    <nav class="hidden md:flex items-center gap-1">
-      {
-        links.map((l) => (
-          <a
-            href={l.href}
-            class="px-3 py-1.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
-          >
-            {l.label}
-          </a>
-        ))
-      }
-      <div class="ml-2 pl-2 border-l border-[var(--color-border)]">
+    <div class="flex items-center gap-1">
+      <nav class="hidden md:flex items-center gap-1">
+        {
+          links.map((l) => (
+            <a
+              href={l.href}
+              class="px-3 py-1.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+            >
+              {l.label}
+            </a>
+          ))
+        }
+      </nav>
+      <div class="md:ml-2 md:pl-2 md:border-l md:border-[var(--color-border)]">
         <ThemeToggle />
       </div>
-    </nav>
-    <div class="md:hidden">
-      <ThemeToggle />
     </div>
   </div>
 </header>

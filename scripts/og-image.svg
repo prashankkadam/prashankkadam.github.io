@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0e0c"/>
+      <stop offset="100%" stop-color="#1a1817"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="20%" r="50%">
+      <stop offset="0%" stop-color="#c2410c" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#c2410c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Monogram tile (top-left) -->
+  <g transform="translate(80, 80)">
+    <rect width="120" height="120" rx="22" ry="22" fill="#f5f0e8"/>
+    <rect x="14" y="92" width="40" height="6" rx="3" fill="#c2410c"/>
+    <text x="60" y="78"
+          text-anchor="middle"
+          font-family="Georgia, 'Source Serif Pro', 'Source Serif 4', serif"
+          font-size="64"
+          font-weight="700"
+          letter-spacing="-2"
+          fill="#0f0e0c">PK</text>
+  </g>
+
+  <!-- Name -->
+  <text x="80" y="340"
+        font-family="Georgia, 'Source Serif Pro', 'Source Serif 4', serif"
+        font-size="92"
+        font-weight="700"
+        letter-spacing="-2"
+        fill="#f5f0e8">Prashank Kadam</text>
+
+  <!-- Role line -->
+  <text x="80" y="400"
+        font-family="-apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif"
+        font-size="34"
+        font-weight="500"
+        fill="#a3a3a3">Principal ML Engineer · Cerby</text>
+
+  <!-- Research areas (mono, like terminal labels) -->
+  <text x="80" y="500"
+        font-family="ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace"
+        font-size="22"
+        font-weight="500"
+        letter-spacing="2"
+        fill="#737373">LLMS  ·  MECH INTERP  ·  RL  ·  GEOMETRIC DEEP LEARNING</text>
+
+  <!-- Bottom rule + URL -->
+  <line x1="80" y1="540" x2="1120" y2="540" stroke="#262626" stroke-width="1"/>
+  <text x="80" y="585"
+        font-family="ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace"
+        font-size="20"
+        font-weight="500"
+        fill="#a3a3a3">prashankkadam.github.io</text>
+  <text x="1120" y="585"
+        text-anchor="end"
+        font-family="ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace"
+        font-size="20"
+        font-weight="500"
+        fill="#c2410c">researcher  ·  engineer</text>
+</svg>
