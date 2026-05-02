@@ -52,6 +52,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
       rel="stylesheet"
     />
 
+    <!-- Cloudflare Web Analytics -->
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "f2b3c9ff5fd847b5b5fbda012b9b8834"}'></script>
+
     <!-- Theme bootstrap (avoid flash of wrong theme) -->
     <script is:inline>
       (() => {
