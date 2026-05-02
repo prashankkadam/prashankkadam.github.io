@@ -29,6 +29,8 @@ export const talks: Talk[] = [
 ];
 
 export const academicService: string[] = [
+  "Reviewer - ICML 2026",
+  "PC Member - NeurIPS 2026",
   "PC Member - SIGKDD 2026 (Feb & Aug cycles)",
   "PC Member - ACM WebConf 2026",
   "PC Member - SIGKDD 2025 (Feb & Aug cycles)",
