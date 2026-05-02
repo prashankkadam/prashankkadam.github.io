@@ -1,0 +1,32 @@
+---
+import { awards, certifications } from "../data/awards";
+---
+
+<section id="awards" class="container-readable py-16">
+  <h2 class="section-title">Awards &amp; Certifications</h2>
+
+  <h3 class="font-serif text-base font-semibold mb-4">Awards</h3>
+  <ul class="space-y-2 mb-12">
+    {
+      awards.map((a) => (
+        <li class="text-[var(--color-text-muted)] before:content-['›'] before:mr-3 before:text-[var(--color-accent)] before:font-bold">
+          {a}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3 class="font-serif text-base font-semibold mb-4">Certifications</h3>
+  <ul class="space-y-2">
+    {
+      certifications.map((c) => (
+        <li>
+          <a class="accent-link text-[var(--color-text-muted)] hover:text-[var(--color-text)]" href={c.href} target="_blank" rel="noopener">
+            <span class="text-[var(--color-accent)] font-bold mr-3">›</span>
+            {c.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

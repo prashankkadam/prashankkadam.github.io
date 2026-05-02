@@ -1,0 +1,38 @@
+---
+import { profile } from "../data/profile";
+---
+
+<section id="about" class="container-readable pt-16 pb-20">
+  <div class="flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-8">
+    <div class="flex-1 min-w-0">
+      <p class="font-mono text-xs uppercase tracking-widest text-[var(--color-text-subtle)] mb-3">
+        {profile.location}
+      </p>
+      <h1 class="font-serif text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] mb-3">
+        {profile.name}
+      </h1>
+      <p class="text-base md:text-lg text-[var(--color-text-muted)] mb-6">
+        {profile.title} · <span class="text-[var(--color-text)]">{profile.affiliation}</span>
+      </p>
+      <p class="text-[var(--color-text-muted)] leading-relaxed mb-6">
+        {profile.bio}
+      </p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        {profile.researchAreas.map((area) => <span class="tag">{area}</span>)}
+      </div>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <a class="accent-link" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a class="accent-link" href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
+        <a class="accent-link" href={profile.links.cv} target="_blank" rel="noopener">CV</a>
+        <span class="font-mono text-xs text-[var(--color-text-subtle)]">{profile.email}</span>
+      </div>
+    </div>
+    <div class="flex-shrink-0">
+      <img
+        src="/img/profile_pic.jpeg"
+        alt={profile.name}
+        class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border border-[var(--color-border)]"
+      />
+    </div>
+  </div>
+</section>

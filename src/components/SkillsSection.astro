@@ -1,0 +1,21 @@
+---
+import { skills } from "../data/skills";
+---
+
+<section id="skills" class="container-readable py-16">
+  <h2 class="section-title">Technical Stack</h2>
+  <div class="space-y-6">
+    {
+      skills.map((g) => (
+        <div>
+          <h3 class="font-mono text-xs uppercase tracking-widest text-[var(--color-text-subtle)] mb-3">
+            {g.heading}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {g.items.map((item) => <span class="tag">{item}</span>)}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

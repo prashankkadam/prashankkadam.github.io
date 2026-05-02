@@ -1,0 +1,41 @@
+---
+import { papers } from "../data/research";
+---
+
+<section id="research" class="container-readable py-16">
+  <h2 class="section-title">Selected Research</h2>
+  <ol class="space-y-8">
+    {
+      papers.map((p) => (
+        <li class="group">
+          <article class="card p-5">
+            <div class="flex items-baseline justify-between gap-4 mb-2">
+              <h3 class="font-serif text-lg md:text-xl font-semibold leading-snug">
+                {p.title}
+                {p.highlight && (
+                  <span class="ml-2 align-middle inline-block w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" aria-label="highlighted" />
+                )}
+              </h3>
+              <span class="shrink-0 font-mono text-xs text-[var(--color-text-subtle)]">{p.year}</span>
+            </div>
+            <p class="text-sm text-[var(--color-text-muted)] mb-2">
+              <span class="font-medium text-[var(--color-text)]">{p.venue}</span>
+              {p.authors && <span class="text-[var(--color-text-subtle)]"> · {p.authors}</span>}
+            </p>
+            <p class="text-[var(--color-text-muted)] leading-relaxed mb-3">{p.description}</p>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              {p.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+            <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              {p.links.map((l) => (
+                <a class="accent-link" href={l.href} target="_blank" rel="noopener">
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+</section>

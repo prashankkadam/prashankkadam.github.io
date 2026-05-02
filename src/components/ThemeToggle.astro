@@ -1,0 +1,39 @@
+---
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle color theme"
+  class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-text-subtle)] transition-colors"
+>
+  <svg id="theme-toggle-sun" class="h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+  </svg>
+  <svg id="theme-toggle-moon" class="h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById("theme-toggle");
+    const sun = document.getElementById("theme-toggle-sun");
+    const moon = document.getElementById("theme-toggle-moon");
+
+    const sync = () => {
+      const dark = document.documentElement.classList.contains("dark");
+      sun.classList.toggle("hidden", !dark);
+      moon.classList.toggle("hidden", dark);
+    };
+
+    sync();
+
+    btn.addEventListener("click", () => {
+      const dark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", dark ? "dark" : "light");
+      sync();
+    });
+  })();
+</script>

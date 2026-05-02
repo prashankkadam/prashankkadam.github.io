@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopNav from "../components/TopNav.astro";
+import Hero from "../components/Hero.astro";
+import ResearchSection from "../components/ResearchSection.astro";
+import ExperienceSection from "../components/ExperienceSection.astro";
+import EducationSection from "../components/EducationSection.astro";
+import TalksSection from "../components/TalksSection.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import SkillsSection from "../components/SkillsSection.astro";
+import AwardsSection from "../components/AwardsSection.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Prashank Kadam | Principal Machine Learning Engineer";
+const description =
+  "Principal ML Engineer leading foundation model development at Cerby. Research interests: LLMs, mechanistic interpretability, reinforcement learning, geometric deep learning, and graph neural networks.";
+---
+
+<BaseLayout title={title} description={description}>
+  <a id="top"></a>
+  <TopNav />
+  <main>
+    <Hero />
+    <ResearchSection />
+    <ExperienceSection />
+    <EducationSection />
+    <TalksSection />
+    <ProjectsSection />
+    <SkillsSection />
+    <AwardsSection />
+  </main>
+  <Footer />
+</BaseLayout>

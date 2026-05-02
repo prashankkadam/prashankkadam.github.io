@@ -1,0 +1,33 @@
+---
+import { talks, academicService } from "../data/talks";
+---
+
+<section id="talks" class="container-readable py-16">
+  <h2 class="section-title">Talks &amp; Service</h2>
+
+  <h3 class="font-serif text-base font-semibold mb-4">Invited Talks</h3>
+  <ul class="space-y-5 mb-12">
+    {
+      talks.map((t) => (
+        <li class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+          <div class="flex-1 min-w-0">
+            <h4 class="font-medium leading-snug">{t.title}</h4>
+            <p class="text-sm text-[var(--color-text-muted)]">{t.venue}</p>
+          </div>
+          <span class="font-mono text-xs text-[var(--color-text-subtle)] shrink-0">{t.date}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3 class="font-serif text-base font-semibold mb-4">Academic Service</h3>
+  <ul class="space-y-2">
+    {
+      academicService.map((s) => (
+        <li class="text-[var(--color-text-muted)] before:content-['›'] before:mr-3 before:text-[var(--color-accent)] before:font-bold">
+          {s}
+        </li>
+      ))
+    }
+  </ul>
+</section>

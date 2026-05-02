@@ -1,0 +1,25 @@
+---
+import { projects } from "../data/projects";
+---
+
+<section id="projects" class="container-readable py-16">
+  <h2 class="section-title">Projects</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {
+      projects.map((p) => (
+        <article class="card p-5 flex flex-col">
+          <div class="flex items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-serif text-base font-semibold leading-snug">{p.title}</h3>
+            {p.date && (
+              <span class="font-mono text-[10px] text-[var(--color-text-subtle)] shrink-0">{p.date}</span>
+            )}
+          </div>
+          <p class="text-xs font-mono text-[var(--color-accent)] mb-2 uppercase tracking-wider">
+            {p.context}
+          </p>
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{p.description}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

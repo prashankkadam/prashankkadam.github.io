@@ -1,0 +1,37 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const links = [
+  { href: "#research", label: "Research" },
+  { href: "#experience", label: "Experience" },
+  { href: "#talks", label: "Talks" },
+  { href: "#projects", label: "Projects" },
+  { href: "#about", label: "About" },
+];
+---
+
+<header class="sticky top-0 z-40 backdrop-blur-md bg-[color-mix(in_srgb,var(--color-bg)_85%,transparent)] border-b border-[var(--color-border)]">
+  <div class="container-wide flex h-14 items-center justify-between">
+    <a href="#top" class="font-serif text-base font-semibold tracking-tight">
+      Prashank Kadam
+    </a>
+    <nav class="hidden md:flex items-center gap-1">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="px-3 py-1.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <div class="ml-2 pl-2 border-l border-[var(--color-border)]">
+        <ThemeToggle />
+      </div>
+    </nav>
+    <div class="md:hidden">
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
