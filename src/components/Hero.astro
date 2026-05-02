@@ -21,6 +21,7 @@ import { profile } from "../data/profile";
         {profile.researchAreas.map((area) => <span class="tag">{area}</span>)}
       </div>
       <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <a class="accent-link" href={profile.links.googleScholar} target="_blank" rel="noopener">Google Scholar</a>
         <a class="accent-link" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
         <a class="accent-link" href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
         <a class="accent-link" href={profile.links.cv} target="_blank" rel="noopener">CV</a>

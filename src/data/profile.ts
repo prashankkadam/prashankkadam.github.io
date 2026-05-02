@@ -8,7 +8,7 @@ export const profile = {
   links: {
     linkedin: "https://www.linkedin.com/in/prashank-kadam-26158794/",
     github: "https://github.com/prashankkadam",
-    googleScholar: "https://scholar.google.com/",
+    googleScholar: "https://scholar.google.com/citations?user=y7H6JOEAAAAJ&hl=en",
     cv: "https://drive.google.com/file/d/1uZov7TOOlKGzM-kr9t3rQJIpsu8-zhlR/view?usp=sharing",
   },
   researchAreas: [

@@ -9,6 +9,7 @@ const year = new Date().getFullYear();
       &copy; {year} {profile.name}. Built with Astro &amp; Tailwind.
     </p>
     <div class="flex gap-5 text-sm">
+      <a class="accent-link" href={profile.links.googleScholar} target="_blank" rel="noopener">Scholar</a>
       <a class="accent-link" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
       <a class="accent-link" href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
       <a class="accent-link" href={profile.links.cv} target="_blank" rel="noopener">CV</a>
