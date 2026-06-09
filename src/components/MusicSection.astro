@@ -1,0 +1,45 @@
+---
+import { recordings } from "../data/music";
+---
+
+<section id="flute" class="container-readable py-16">
+  <h2 class="section-title">Flute</h2>
+  <p class="text-[var(--color-text-muted)] mb-8">
+    I'm trained in Indian classical flute. Hope you enjoy these.
+  </p>
+
+  <ul class="space-y-8">
+    {
+      recordings.map((r) => (
+        <li>
+          <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-3">
+            <h3 class="font-medium leading-snug">{r.title}</h3>
+            {r.detail && (
+              <span class="font-mono text-xs text-[var(--color-text-subtle)] shrink-0">
+                {r.detail}
+              </span>
+            )}
+          </div>
+
+          {r.type === "audio" ? (
+            <audio controls preload="none" class="w-full">
+              <source src={r.src} type="audio/mp4" />
+              Your browser does not support the audio element.
+            </audio>
+          ) : (
+            <div class="aspect-video w-full overflow-hidden rounded-lg border border-[var(--color-border)]">
+              <iframe
+                class="h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${r.src}`}
+                title={r.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              />
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>
