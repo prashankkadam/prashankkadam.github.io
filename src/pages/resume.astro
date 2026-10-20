@@ -1,0 +1,376 @@
+---
+// Printable resume, built from the same data as the home page.
+// scripts/build-resume-pdf.mjs prints this page to dist/resume.pdf after `astro build`.
+// Layout rules and how to change content safely: RESUME.md.
+import { profile } from "../data/profile";
+import { experiences } from "../data/experience";
+import { education } from "../data/education";
+import { papers } from "../data/research";
+import { skills } from "../data/skills";
+import { projects } from "../data/projects";
+import { talks, academicService } from "../data/talks";
+import { awards } from "../data/awards";
+
+// Consecutive roles at the same employer share one heading and one bullet list.
+const jobs: { org: string; roles: typeof experiences; bullets: string[] }[] = [];
+for (const e of experiences.filter((x) => !x.hideOnResume)) {
+  const last = jobs[jobs.length - 1];
+  const bullets = e.description.split(/(?<=\.)\s+(?=[A-Z])/);
+  if (last && last.org === e.org) {
+    last.roles.push(e);
+    last.bullets.push(...bullets);
+  } else {
+    jobs.push({ org: e.org, roles: [e], bullets });
+  }
+}
+const papersFor = (org: string) => papers.filter((p) => p.resumeOrg === org);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{profile.name} - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&family=Carlito:ital,wght@0,400;0,700;1,400&display=block"
+      rel="stylesheet"
+    />
+    <style is:global>
+      /* Page geometry. The layout script reads the same numbers from data-* attributes on .sheet;
+         change both together. */
+      @page {
+        size: A4;
+        margin: 12mm 15mm;
+      }
+      :root {
+        --blue: #4e81bd;
+        --ink: #111;
+        /* Set by the layout script; these are the starting values. */
+        --fs: 10.5pt;
+        --lh: 1.28;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: #e8e8e6;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Caladea", Cambria, Georgia, serif;
+        font-size: var(--fs);
+        line-height: var(--lh);
+      }
+      /* The sheet is exactly the printable width in both screen and print, so what the layout
+         script measures on screen is what Chrome prints. */
+      .sheet {
+        width: 180mm;
+        margin: 24px auto;
+        background: #fff;
+        box-shadow: 0 0 0 15mm #fff;
+      }
+      @media print {
+        html {
+          background: #fff;
+        }
+        .sheet {
+          margin: 0;
+          box-shadow: none;
+        }
+      }
+      a {
+        color: inherit;
+      }
+      p {
+        margin: 0;
+      }
+
+      /* Blocks: the units the layout script places on pages. A block never splits across pages.
+         Vertical space between blocks is padding (never margin) so heights add up exactly. */
+      .blk {
+        padding-top: 6pt;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        display: flow-root;
+      }
+      .blk.sec {
+        padding-top: 11pt;
+      }
+      .blk.head {
+        padding-top: 0;
+      }
+
+      h1 {
+        font-family: "Carlito", Calibri, sans-serif;
+        font-size: 24pt;
+        line-height: 1.1;
+        color: #2f5496;
+        margin: 0 0 3pt;
+      }
+      .contact a {
+        color: #1155cc;
+      }
+      h2 {
+        font-family: "Carlito", Calibri, sans-serif;
+        font-size: 12pt;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--blue);
+        text-transform: uppercase;
+        margin: 0 0 4pt;
+        padding-bottom: 2pt;
+        border-bottom: 1px solid var(--blue);
+      }
+      .org,
+      .item-title {
+        font-family: "Carlito", Calibri, sans-serif;
+        font-weight: 700;
+        color: var(--blue);
+      }
+      .org {
+        font-size: 12pt;
+        line-height: 1.2;
+      }
+      .role {
+        font-weight: 700;
+        margin-top: 1pt;
+      }
+      ul {
+        margin: 2pt 0 0;
+        padding-left: 14pt;
+      }
+      li {
+        margin: 0 0 1.5pt;
+      }
+      .papers-label {
+        font-weight: 700;
+        margin-top: 3pt;
+      }
+      .paper {
+        margin-top: 2pt;
+      }
+      .paper .item-title a {
+        color: var(--blue);
+      }
+      .muted {
+        color: #333;
+      }
+      .degree {
+        font-weight: 700;
+        margin: 1pt 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet" data-page-height-mm="297" data-margin-y-mm="12">
+      <div class="blk head">
+        <h1>{profile.name}</h1>
+        <p class="contact">
+          {profile.location} | {profile.resumeContact.email} | {profile.resumeContact.phone} |
+          <a href={profile.links.linkedin}>LinkedIn</a> |
+          <a href="https://prashankkadam.github.io/">prashankkadam.github.io</a>
+        </p>
+      </div>
+
+      {
+        jobs.map((j, i) => (
+          <div class={i === 0 ? "blk sec" : "blk"}>
+            {i === 0 && <h2>Work Experience</h2>}
+            <p class="org">{j.org}</p>
+            {j.roles.map((r) => (
+              <>
+                <p class="role">{r.role}</p>
+                <p class="meta">
+                  {r.location ? `${r.location} | ` : ""}
+                  {r.start} – {r.end}
+                </p>
+              </>
+            ))}
+            <ul>
+              {j.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+            {papersFor(j.org).length > 0 && (
+              <>
+                <p class="papers-label">Relevant Papers:</p>
+                {papersFor(j.org).map((p) => (
+                  <div class="paper">
+                    <span class="item-title">
+                      {p.title} ({p.venue})
+                      {p.links[0] && (
+                        <>
+                          {" "}
+                          (<a href={p.links[0].href}>link</a>)
+                        </>
+                      )}
+                    </span>
+                    <div class="muted">{p.description}</div>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+        ))
+      }
+
+      {
+        education.map((e, i) => (
+          <div class={i === 0 ? "blk sec" : "blk"}>
+            {i === 0 && <h2>Education</h2>}
+            <span class="item-title">{e.school}</span>
+            {e.location && <span> ({e.location})</span>}
+            <p class="degree">
+              {e.degree}
+              {e.notes && ` | ${e.notes}`}
+            </p>
+            {e.detail && <div class="muted">{e.detail}</div>}
+          </div>
+        ))
+      }
+
+      <div class="blk sec">
+        <h2>Technical Skills</h2>
+        <ul>
+          {
+            skills.map((g) => (
+              <li>
+                <b>{g.heading}:</b> {g.items.join(", ")}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {
+        projects.map((p, i) => (
+          <div class={i === 0 ? "blk sec" : "blk"}>
+            {i === 0 && <h2>Academic Projects</h2>}
+            <span class="item-title">{p.title}</span> <span class="muted">({p.context})</span>
+            {p.date && <span> {p.date}</span>}
+            <div class="muted">{p.description}</div>
+          </div>
+        ))
+      }
+
+      <div class="blk sec">
+        <h2>Talks and Teaching</h2>
+        <ul>
+          {
+            talks.map((t) => (
+              <li>
+                {t.title}, {t.venue} ({t.date})
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="blk sec">
+        <h2>Reviewing</h2>
+        <ul>
+          {academicService.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+
+      <div class="blk sec">
+        <h2>Achievements and Activities</h2>
+        <ul>
+          {awards.map((a) => <li>{a}</li>)}
+        </ul>
+      </div>
+    </main>
+
+    <script is:inline>
+      // Page layout: places whole blocks on A4 pages, picks the font size and line height that fill
+      // the pages best, then spreads each page's leftover space evenly between its blocks so no page
+      // ends in a large blank area. Rules: RESUME.md.
+      (async () => {
+        await document.fonts.ready;
+        const sheet = document.querySelector(".sheet");
+        const blocks = [...sheet.querySelectorAll(":scope > .blk")];
+        const root = document.documentElement.style;
+        const MM = 96 / 25.4;
+        const pageH =
+          (Number(sheet.dataset.pageHeightMm) - 2 * Number(sheet.dataset.marginYMm)) * MM - 6; // 6px safety
+        const PT = 96 / 72;
+        const MAX_EXTRA_GAP = 14 * PT; // most extra space added between two blocks on one page
+        const sizes = [10.75, 10.5, 10.25, 10, 9.75];
+        const lineHeights = [1.3, 1.26, 1.22];
+
+        const topPad = (b) => parseFloat(getComputedStyle(b).paddingTop);
+        function pack() {
+          const h = blocks.map((b) => b.getBoundingClientRect().height);
+          const pages = [[]];
+          let used = 0;
+          h.forEach((hi, i) => {
+            const cur = pages[pages.length - 1];
+            if (cur.length && used + hi > pageH) {
+              pages.push([i]);
+              used = hi - topPad(blocks[i]); // a block that starts a page loses its top padding
+            } else {
+              cur.push(i);
+              used += hi;
+            }
+          });
+          const usedOf = (p) => p.reduce((s, i, k) => s + h[i] - (k === 0 ? topPad(blocks[i]) : 0), 0);
+          const fills = pages.map((p) => usedOf(p) / pageH);
+          return { pages, h, fills, usedOf };
+        }
+
+        let best = null;
+        for (const fs of sizes) {
+          for (const lh of lineHeights) {
+            root.setProperty("--fs", fs + "pt");
+            root.setProperty("--lh", String(lh));
+            const r = pack();
+            const worst = Math.min(1, ...r.fills.slice(0, -1)); // emptiest page, ignoring the last
+            const c = { fs, lh, n: r.pages.length, worst };
+            const better =
+              !best ||
+              c.n < best.n ||
+              (c.n === best.n && c.worst > best.worst + 0.02) ||
+              (c.n === best.n && Math.abs(c.worst - best.worst) <= 0.02 && (c.fs > best.fs || (c.fs === best.fs && c.lh > best.lh)));
+            if (better) best = c;
+          }
+        }
+        root.setProperty("--fs", best.fs + "pt");
+        root.setProperty("--lh", String(best.lh));
+        const r = pack();
+
+        const finalFill = [];
+        r.pages.forEach((p, k) => {
+          const first = blocks[p[0]];
+          if (k > 0) {
+            first.style.breakBefore = "page";
+            first.style.paddingTop = "0";
+          }
+          const leftover = pageH - r.usedOf(p);
+          if (k === r.pages.length - 1 || p.length < 2) {
+            finalFill.push(r.usedOf(p) / pageH); // last page keeps natural spacing
+            return;
+          }
+          const extra = Math.min(MAX_EXTRA_GAP, leftover / (p.length - 1));
+          finalFill.push((r.usedOf(p) + extra * (p.length - 1)) / pageH);
+          p.slice(1).forEach((i) => {
+            blocks[i].style.paddingTop = topPad(blocks[i]) + extra + "px";
+          });
+        });
+
+        sheet.dataset.layout = JSON.stringify({
+          fontPt: best.fs,
+          lineHeight: best.lh,
+          pages: r.pages.length,
+          pageFill: finalFill.map((f) => Math.round(f * 100)),
+          blocksPerPage: r.pages.map((p) => p.length),
+        });
+      })();
+    </script>
+  </body>
+</html>

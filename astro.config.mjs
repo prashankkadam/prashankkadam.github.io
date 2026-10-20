@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://prashankkadam.github.io',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/resume/') })],
   vite: {
     plugins: [tailwindcss()],
   },

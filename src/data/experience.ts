@@ -4,12 +4,17 @@ export interface ExperienceEntry {
   start: string;
   end: string;
   description: string;
+  // Shown on the PDF resume next to the dates.
+  location?: string;
+  // Leave this entry off the PDF resume.
+  hideOnResume?: boolean;
 }
 
 export const experiences: ExperienceEntry[] = [
   {
     role: "Principal Machine Learning Engineer",
     org: "Cerby",
+    location: "Boston, MA",
     start: "Sep 2025",
     end: "Present",
     description:
@@ -18,6 +23,7 @@ export const experiences: ExperienceEntry[] = [
   {
     role: "Principal Machine Learning Engineer",
     org: "Vesta Corporation",
+    location: "Boston, MA",
     start: "Jan 2025",
     end: "Sep 2025",
     description:
@@ -26,6 +32,7 @@ export const experiences: ExperienceEntry[] = [
   {
     role: "Senior Machine Learning Engineer",
     org: "Vesta Corporation",
+    location: "Boston, MA",
     start: "Jan 2022",
     end: "Jan 2025",
     description:
@@ -34,6 +41,7 @@ export const experiences: ExperienceEntry[] = [
   {
     role: "Machine Learning and Optimization Engineer (Intern)",
     org: "Waters Corporation",
+    location: "Boston, MA",
     start: "Jan 2021",
     end: "Jul 2021",
     description:
@@ -42,6 +50,8 @@ export const experiences: ExperienceEntry[] = [
   {
     role: "Teaching Assistant",
     org: "Northeastern University",
+    location: "Boston, MA",
+    hideOnResume: true,
     start: "Aug 2020",
     end: "Jun 2021",
     description:
@@ -50,6 +60,7 @@ export const experiences: ExperienceEntry[] = [
   {
     role: "Data Scientist",
     org: "Maersk Tankers",
+    location: "India",
     start: "Mar 2019",
     end: "Dec 2019",
     description:
@@ -58,6 +69,7 @@ export const experiences: ExperienceEntry[] = [
   {
     role: "Data Analyst",
     org: "Accenture Solutions Private Limited",
+    location: "India",
     start: "Nov 2016",
     end: "Mar 2019",
     description:

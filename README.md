@@ -19,6 +19,8 @@ Personal website. Built with Astro 5 + Tailwind 4. Deployed to GitHub Pages via 
 
 Edit the relevant TypeScript file under `src/data/` and push to `master`. The Actions workflow rebuilds and deploys automatically.
 
+The PDF resume (`/resume.pdf`, linked as CV) is built from the same files: `src/pages/resume.astro` lays it out and `scripts/build-resume-pdf.mjs` prints it with headless Chrome during `npm run build`. How to update it and the layout rules that keep it well formatted: [RESUME.md](RESUME.md).
+
 | Section | File |
 | --- | --- |
 | Bio, social links, research areas | `src/data/profile.ts` |

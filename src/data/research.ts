@@ -7,6 +7,8 @@ export interface Paper {
   tags: string[];
   links: { label: string; href: string }[];
   highlight?: boolean;
+  // On the PDF resume, list this paper under this employer (matches experience `org`).
+  resumeOrg?: string;
 }
 
 export const papers: Paper[] = [
@@ -19,6 +21,7 @@ export const papers: Paper[] = [
     tags: ["GNN", "Attention", "Fraud Detection"],
     links: [{ label: "IEEE Xplore", href: "https://ieeexplore.ieee.org/abstract/document/10903430" }],
     highlight: true,
+    resumeOrg: "Vesta Corporation",
   },
   {
     title:
@@ -29,6 +32,7 @@ export const papers: Paper[] = [
       "Analyzes the impact of human-in-the-loop feedback on financial transactions and proposes a novel algorithm that propagates feedback signal further into the graph.",
     tags: ["GNN", "Human-in-the-Loop", "Fraud Detection"],
     links: [{ label: "IEEE Xplore", href: "https://ieeexplore.ieee.org/abstract/document/10903260" }],
+    resumeOrg: "Vesta Corporation",
   },
   {
     title: "GPT-Guided Monte Carlo Tree Search for Symbolic Regression in Financial Fraud Detection",
@@ -39,6 +43,7 @@ export const papers: Paper[] = [
     tags: ["LLM", "MCTS", "Symbolic Regression"],
     links: [{ label: "Workshop", href: "https://sites.google.com/view/cikm2024-rag/papers" }],
     highlight: true,
+    resumeOrg: "Vesta Corporation",
   },
   {
     title: "Accelerating Neural MCTS Algorithms using Neural Sub-Net Structures",
@@ -52,6 +57,7 @@ export const papers: Paper[] = [
       { label: "Extended Abstract", href: "https://dl.acm.org/doi/abs/10.5555/3545946.3599027" },
       { label: "Full Paper", href: "https://alaworkshop2023.github.io/papers/ALA2023_paper_55.pdf" },
     ],
+    resumeOrg: "Waters Corporation",
   },
   {
     title: "Optimizations over Neural MCTS for Combinatorial Games",
