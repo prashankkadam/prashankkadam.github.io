@@ -15,4 +15,10 @@ export const recordings: Recording[] = [
     type: "audio",
     src: "/audio/hamsadhwani.m4a",
   },
+  {
+    title: "Dhun",
+    detail: "Hindustani light classical · flute",
+    type: "audio",
+    src: "/audio/dhun.m4a",
+  },
 ];
